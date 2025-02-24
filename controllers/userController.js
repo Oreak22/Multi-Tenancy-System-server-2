@@ -148,12 +148,13 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 	try {
-		const { tenantId } = req.user;
+    const { tenantId } = req.user;
 		const { userId } = req.params;
-
+    
 		const tenantDB = await getTenantDB(tenantId);
 		const User = tenantDB.model("User", userSchema);
-
+    
+    console.log(userId);
 		// Check if the user exists
 		const userToDelete = await User.findById(userId);
 		if (!userToDelete) {
@@ -170,7 +171,7 @@ const deleteUser = async (req, res) => {
 
 		res.json({ message: "User deleted successfully" });
 	} catch (error) {
-		console.error("Error deleting user:", error);
+		// console.error("Error deleting user:", error);
 		res.status(500).json({ error: "Internal server error" });
 	}
 };
