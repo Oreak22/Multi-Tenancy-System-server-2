@@ -49,7 +49,6 @@ const fetchAllUsers = async (req, res) => {
 			return res.status(404).json({ error: "Tenant database not found" });
 		}
 
-		console.log(`Fetching all users for tenant: ${tenantId}`);
 
 		// Get the User model specific to the tenant's database
 		const UserModel = tenantDB.model("User", userSchema);
@@ -85,7 +84,6 @@ const createUser = async (req, res) => {
 			return res.status(400).json({ error: "All fields are required" });
 		}
 
-		console.log(`Creating user for tenant: ${tenantId}`);
 
 		const tenantDB = await getTenantDB(tenantId);
 		const User = tenantDB.model("User", userSchema);
@@ -113,7 +111,6 @@ const updateUser = async (req, res) => {
 
 		const tenantDB = await getTenantDB(tenantId);
 		const User = tenantDB.model("User", userSchema);
-		console.log(req.user);
 
 		// Fetch user by ID
 		let user = await User.findOne({ _id: userId });
@@ -154,7 +151,6 @@ const deleteUser = async (req, res) => {
 		const tenantDB = await getTenantDB(tenantId);
 		const User = tenantDB.model("User", userSchema);
     
-    console.log(userId);
 		// Check if the user exists
 		const userToDelete = await User.findById(userId);
 		if (!userToDelete) {

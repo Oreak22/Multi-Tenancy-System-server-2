@@ -59,12 +59,8 @@ const createTenant = async (req, res) => {
 
 		//
 
-		console.log("New Tenant Created:", { name, organizationName, adminEmail });
 
-		// return res.status(201).json({
-		// 	message: "Tenant created successfully",
-		// 	tenantId: tenant.tenantId,
-		// });
+		
 	} catch (error) {
 		console.error("Error creating tenant:", error);
 		return res.status(500).json({ error: "Internal Server Error" });
