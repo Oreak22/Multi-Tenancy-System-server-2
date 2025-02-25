@@ -15,7 +15,7 @@ datasource db {
 
 model Tenant {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
-  name      String @unique
+  name      String
   tenantId  String @unique
   createdAt DateTime @default(now())
 
